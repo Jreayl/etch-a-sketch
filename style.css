@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1;
+}
+.container-wrapper {
+    width: 30vw;
+    height: 30vw;
+    position: relative;
+    max-height: var(--content-width);
+    max-width: var(--content-height);
+}
+#container {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    grid-template-rows: repeat(16, 1fr);
+    grid-template-columns: repeat(16, 1fr);
+    border: blue solid 1px;
+    background-color: black;
+}
+.grid-item {
+    border: blue solid 1px;
+}
