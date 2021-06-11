@@ -9,6 +9,13 @@ body {
     min-height: 100vh;
     line-height: 1;
 }
+h1 {
+    font-size: 3em;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
 .container-wrapper {
     width: 30vw;
     height: 30vw;
@@ -21,7 +28,7 @@ body {
     height: 100%;
     width: 100%;
     position: absolute;
-    grid-template-rows: repeat(16, 1fr);
-    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
     background-color: black;
 }
