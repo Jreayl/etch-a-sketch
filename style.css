@@ -1,3 +1,6 @@
+html {
+    background-color: rgb(24, 24, 24);
+}
 body {
     display: flex;
     flex-direction: column;
@@ -20,9 +23,5 @@ body {
     position: absolute;
     grid-template-rows: repeat(16, 1fr);
     grid-template-columns: repeat(16, 1fr);
-    border: blue solid 1px;
     background-color: black;
-}
-.grid-item {
-    border: blue solid 1px;
 }
