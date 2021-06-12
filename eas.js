@@ -1,3 +1,6 @@
+let colorChoice = "black";
+main(16);
+
 // Create 16x16 grid of square divs
 function makeGrid(size) {
     const container = document.getElementById("container");
@@ -13,10 +16,6 @@ function makeGrid(size) {
 }
 
 function randBetween(min, max) {
-    // const randBetween = (min, max) => min + (Math.floor(Math.random() * (max - min + 1)));
-    // const r = randBetween(0, 255);
-    // const g = randBetween(0, 255);
-    // const b = randBetween(0, 255);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -27,15 +26,39 @@ function randomRGB(min, max) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
+function changeColorChoice(e) {
+    switch (e.target.id) {
+        case "black":
+            colorChoice = "black";
+            break;
+        case "rainbow":
+            colorChoice = "rainbow";
+            break;
+        case "erase":
+            console.log("Erase");
+            colorChoice = "erase";
+            break;    
+    }
+} 
 
 function colorCell(e) {
-    e.target.style.backgroundColor = "red";
+    switch (colorChoice) {
+        case "black":
+            e.target.style.backgroundColor = "rgb(0, 0, 0)";
+            break;
+        case "rainbow":
+            e.target.style.backgroundColor = randomRGB(0, 255);
+            break;  
+        case "erase":
+            e.target.style.backgroundColor = "rgb(196, 196, 196)";
+            break;   
+    }
 }
 
 function clearGrid() {
     let elements = document.getElementsByClassName("grid-item");
     for (i = 0; i < elements.length; i++) {
-        elements[i].style.backgroundColor = "black";
+        elements[i].style.backgroundColor = "rgb(196, 196, 196)";
     }
 }
 
@@ -50,8 +73,7 @@ function changeGridSize() {
         size = 4;
     }
     clearGrid();
-    makeGrid(size);
-    actions();
+    main(size);
 }
 
 function actions() {
@@ -59,16 +81,19 @@ function actions() {
     const clearBtn = document.querySelector("#clear");
     const sizeBtn = document.querySelector("#size");
     const rainbowBtn = document.querySelector("#rainbow");
+    const blackBtn = document.querySelector("#black");
+    const eraseBtn = document.querySelector("#erase");
 
     cells.forEach(div => div.addEventListener("mouseover", colorCell));
-    
     clearBtn.addEventListener("click", clearGrid);
     sizeBtn.addEventListener("click", changeGridSize);
-    rainbowBtn.addEventListener("click", colorCell);
+    rainbowBtn.addEventListener("click", changeColorChoice);
+    blackBtn.addEventListener("click", changeColorChoice);
+    eraseBtn.addEventListener("click", changeColorChoice);
 }
 
-function main() {
-    makeGrid(16);
+function main(size) {
+    makeGrid(size);
     actions();
 }
 
