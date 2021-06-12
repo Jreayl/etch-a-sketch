@@ -1,5 +1,5 @@
 html {
-    background-color: rgb(24, 24, 24);
+    background-color: rgb(43, 43, 43);
 }
 body {
     display: flex;
@@ -10,11 +10,28 @@ body {
     line-height: 1;
 }
 h1 {
+    color:rgb(0, 162, 255);
     font-size: 3em;
+    margin-top: -50px;
 }
 .buttons {
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: space-between;
+    margin-bottom: 2em;
+}
+button {
+    color: white;
+    margin-inline: 0.75em;
+    width: 100px;
+    height: 50px;
+    border: rgb(0, 162, 255) solid 2px;
+    border-radius: 100px 100px 100px 100px;
+    background-color: black;
+}
+button:hover {
+    border: rgb(6, 43, 250) solid 3px;
 }
 .container-wrapper {
     width: 30vw;
@@ -30,5 +47,6 @@ h1 {
     position: absolute;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
-    background-color: black;
+    background-color: rgb(196, 196, 196);
+    border: rgb(0, 162, 255) solid 10px;
 }
