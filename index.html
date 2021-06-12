@@ -2,20 +2,25 @@
 <head>
     <title>Etch-a-Sketch</title>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="#">
 </head>
 <body>
-    <h1>Etch-A-Sketch</h1>
+    <h1>Etch-a-Sketch</h1>
     <div class="buttons">
         <button id="clear">Clear</button>
         <button id="size">Size</button>
         <button id="black">Black</button>
         <button id="rainbow">Rainbow</button>
         <button id="erase">Erase</button>
+        <input id="input-color" type="color" placeholder="Color">
     </div>
     <div class="container-wrapper">
-        <div id="container"></div>
+        <div class="grid-container">
+            <div id="container"></div>
+        </div>
     </div>
 </body>
 <script src="eas.js"></script>
