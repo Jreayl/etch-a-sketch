@@ -1,4 +1,5 @@
 let colorChoice = "black";
+let colorInput = "";
 main(16);
 
 // Create 16x16 grid of square divs
@@ -26,6 +27,10 @@ function randomRGB(min, max) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
+function inputColor(e) {
+    return e.target.value;
+}
+
 function changeColorChoice(e) {
     switch (e.target.id) {
         case "black":
@@ -35,9 +40,11 @@ function changeColorChoice(e) {
             colorChoice = "rainbow";
             break;
         case "erase":
-            console.log("Erase");
             colorChoice = "erase";
-            break;    
+            break;  
+        case "input-color":
+            colorChoice = inputColor(e);    
+            break;
     }
 } 
 
@@ -51,7 +58,10 @@ function colorCell(e) {
             break;  
         case "erase":
             e.target.style.backgroundColor = "rgb(196, 196, 196)";
-            break;   
+            break;
+        default:
+            e.target.style.backgroundColor = colorChoice;
+            break;       
     }
 }
 
@@ -65,11 +75,11 @@ function clearGrid() {
 function changeGridSize() {
     let size = prompt("Enter new size (4-100): ");
     if (size > 100) {
-        alert("Size changed to 100");
+        alert("Exceeds max size. Size changed to 100.");
         size = 100;
     }
     else if (size < 4) {
-        alert("Size changed to 4");
+        alert("Subceeds min size. Size changed to 4.");
         size = 4;
     }
     clearGrid();
@@ -83,6 +93,7 @@ function actions() {
     const rainbowBtn = document.querySelector("#rainbow");
     const blackBtn = document.querySelector("#black");
     const eraseBtn = document.querySelector("#erase");
+    const inputClr = document.querySelector("#input-color");
 
     cells.forEach(div => div.addEventListener("mouseover", colorCell));
     clearBtn.addEventListener("click", clearGrid);
@@ -90,6 +101,7 @@ function actions() {
     rainbowBtn.addEventListener("click", changeColorChoice);
     blackBtn.addEventListener("click", changeColorChoice);
     eraseBtn.addEventListener("click", changeColorChoice);
+    inputClr.addEventListener("input", changeColorChoice);
 }
 
 function main(size) {
