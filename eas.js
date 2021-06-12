@@ -74,7 +74,10 @@ function clearGrid() {
 
 function changeGridSize() {
     let size = prompt("Enter new size (4-100): ");
-    if (size > 100) {
+    if (size === "") {
+        size = 16;
+    }
+    else if (size > 100) {
         alert("Exceeds max size. Size changed to 100.");
         size = 100;
     }
