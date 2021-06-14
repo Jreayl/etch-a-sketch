@@ -1,8 +1,10 @@
-let colorChoice = "black";
-let colorInput = "";
-main(16);
+/* Global variables to keep track of button and input color choice. */
+let btnChoice = "black";
+let colorChoice = "";
 
-// Create 16x16 grid of square divs
+updateGrid(16);
+
+/* Creates a square grid of div elements. */
 function makeGrid(size) {
     const container = document.getElementById("container");
     container.style.setProperty("--grid-rows", size);
@@ -16,40 +18,46 @@ function makeGrid(size) {
     }
 }
 
+/* Returns random number between min and max (inclusive). */
 function randBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+/* returns a random RGB color. */
 function randomRGB(min, max) {
+    if (min < 0 || max > 255) return;
     const r = randBetween(min, max);
     const g = randBetween(min, max);
     const b = randBetween(min, max);
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function inputColor(e) {
+/* Gets the input of the color wheel. */
+function getInputColor(e) {
     return e.target.value;
 }
 
+/* Changes color choice variable based on button input. */
 function changeColorChoice(e) {
     switch (e.target.id) {
         case "black":
-            colorChoice = "black";
+            btnChoice = "black";
             break;
         case "rainbow":
-            colorChoice = "rainbow";
+            btnChoice = "rainbow";
             break;
         case "erase":
-            colorChoice = "erase";
+            btnChoice = "erase";
             break;  
         case "input-color":
-            colorChoice = inputColor(e);    
+            btnChoice = getInputColor(e);    
             break;
     }
 } 
 
+/* Changes color of each div element based on color choice variable. */
 function colorCell(e) {
-    switch (colorChoice) {
+    switch (btnChoice) {
         case "black":
             e.target.style.backgroundColor = "rgb(0, 0, 0)";
             break;
@@ -60,11 +68,12 @@ function colorCell(e) {
             e.target.style.backgroundColor = "rgb(196, 196, 196)";
             break;
         default:
-            e.target.style.backgroundColor = colorChoice;
+            e.target.style.backgroundColor = btnChoice;
             break;       
     }
 }
 
+/* Returns each div element to its default color. */
 function clearGrid() {
     let elements = document.getElementsByClassName("grid-item");
     for (i = 0; i < elements.length; i++) {
@@ -72,6 +81,7 @@ function clearGrid() {
     }
 }
 
+/* Changes the grid size based on input. */
 function changeGridSize() {
     let size = prompt("Enter new size (4-100): ");
     if (size === "") {
@@ -86,9 +96,10 @@ function changeGridSize() {
         size = 4;
     }
     clearGrid();
-    main(size);
+    updateGrid(size);
 }
 
+/* Sets actions for divs, buttons, and color input. */ 
 function actions() {
     const cells = document.querySelectorAll(".grid-item");
     const clearBtn = document.querySelector("#clear");
@@ -107,7 +118,8 @@ function actions() {
     inputClr.addEventListener("input", changeColorChoice);
 }
 
-function main(size) {
+/* Updates and refreshes grid after size change. */
+function updateGrid(size) {
     makeGrid(size);
     actions();
 }
